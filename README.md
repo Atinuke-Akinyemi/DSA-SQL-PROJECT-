@@ -3,7 +3,7 @@
 ### Description: A detailed analysis of sales and order data for a retail company.
 #### Steps to my SQL Analysis 
 - Firstly i created a Database and named it KMS_db and then created Table KMS_dbORDERS
-Below are my query:
+Below are my queries:
 CREATE DATABASE KMS_DB
 
 Create Table KMS_dbORDERS(
