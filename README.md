@@ -6,8 +6,8 @@
 Below are my queries:
 CREATE DATABASE KMS_DB
 
-"Create Table KMS_dbORDERS("
-"[Row_ID]INT,"
+-"Create Table KMS_dbORDERS("
+-"[Row_ID]INT,"
 "[ORDER_ID]INT,"
 "[ORDER_Date]Date,"
 "[ORDER_Priority]varchar(50),"
