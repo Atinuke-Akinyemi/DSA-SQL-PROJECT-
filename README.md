@@ -6,20 +6,20 @@
 Below are my queries:
 CREATE DATABASE KMS_DB
 
-Create Table KMS_dbORDERS(
-[Row_ID]INT,
-[ORDER_ID]INT,
-[ORDER_Date]Date,
-[ORDER_Priority]varchar(50),
-[ORDER_Quantity]Int,
-Sales Decimal (10,2),
-Discount Decimal (10,2),
-[ship_Mode]Varchar (50),
-Profit Decimal(10,2),
-[Unit_Price]Decimal(10,2),
-[Shipping_Cost]Decimal (10,2),
-[Customer_Name] Varchar (255),
-Province Varchar (100),
+"Create Table KMS_dbORDERS("
+"[Row_ID]INT,"
+"[ORDER_ID]INT,"
+"[ORDER_Date]Date,"
+"[ORDER_Priority]varchar(50),"
+"[ORDER_Quantity]Int,"
+"Sales Decimal (10,2),"
+"Discount Decimal (10,2),"
+"[ship_Mode]Varchar (50),"
+"Profit Decimal(10,2),"
+"[Unit_Price]Decimal(10,2),"
+"[Shipping_Cost]Decimal (10,2),"
+"[Customer_Name] Varchar (255),"
+"Province Varchar (100),"
 Region Nvarchar(100)
 [Customer_segment] varchar (100),
 [Product_Category]  varchar (100),
