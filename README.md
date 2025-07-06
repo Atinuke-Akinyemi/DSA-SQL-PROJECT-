@@ -71,57 +71,45 @@ from [dbo].[KMS SQL case study]
 group by ship_mode
 order by [total shipping_cost]desc
 
-Who are the most valuable customers, and what products or services do they typically
-
+---Who are the most valuable customers, and what products or services do they typically
 purchase?
 
-7. Which small business customer had the highest sales?
-
-8. Which Corporate Customer placed the most number of orders in 2009 – 2012?
-
-9. Which consumer customer was the most profitable one?
-
-10. Which customer returned items, and what segment do they belong to?
-
-11. If the delivery truck is the most economical but the slowest shipping method and
-
-Express Air is the fastest but the most expensive one, do you think the company
-
-appropriately spent shipping costs based on the Order Priority? Exp
-
-----6
 select customer_segment, product_sub_category,customer_name,sum(sales) as [Total sales]
 from[dbo].[KMS SQL case study]
 group by customer_segment, product_sub_category,customer_name
 order by [total sales]desc
 
-
------7
+---Which small business customer had the highest sales?
 select top 1 *
 from [dbo].[KMS SQL case study ]
 where customer_segment ='small business'
 order by sales desc
 
-----8
+---Which Corporate Customer placed the most number of orders in 2009 – 2012?
+
 select top 1*
 from [dbo].[KMS SQL case study]
 where customer_segment = 'corporate'
 order by order_quantity desc
 
-------9
+---Which consumer customer was the most profitable one?
+
 select top 1*
 from[dbo].[KMS SQL case study]
 where customer_segment= 'consumer'
 order by profit desc
 
+---Which customer returned items, and what segment do they belong to?
 
------10
 select customer_name,customer_segment,product_category,product_sub_category
 from[dbo].[KMS SQL case study]
 join[dbo].[order_status]
 on [dbo].[KMS SQL case study].order_ID=[dbo].[order_status].order_ID
 
------11
+--- If the delivery truck is the most economical but the slowest shipping method and
+Express Air is the fastest but the most expensive one, do you think the company
+appropriately spent shipping costs based on the Order Priority?
+
 SELECT 
 "SHIP_MODE",
 AVG("SHIPPING_COST") AS AVERAGESHIPPINGCOST
