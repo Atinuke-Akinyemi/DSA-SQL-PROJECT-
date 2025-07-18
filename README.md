@@ -118,37 +118,15 @@ join [dbo].[Order_Status]
 on [KMS Sql Case Study].Order_ID = [dbo].[Order_Status].[Order_ID]
 
 ##### If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
-/* If the delivery truck is the most economical but the lowest shipping method and express air is the fastest.
-but the most expensive one, did you think the company appropriately spent shipping costs based on the order priority */
+Select Order_Priority, Ship_Mode,
+COUNT([Order_ID]) AS [order count],
+SUM(sales - profit) AS [Estimated shipping cost],
+AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
+from  [KMS Sql Case Study1] 
+group by Order_Priority,Ship_Mode
+order by  Order_Priority,Ship_Mode desc       
+##### EXPLANATION
+No, KMS did not appropriately spend shipping costs based on the order of  priority.
+They overused delivery trucks, which are best for bulk or non-urgent orders and underused express air, which is meant for urgent deliveries. 
+This leadS to an inefficient spending and wasted cost.
 
-
-SELECT 
-"SHIP_MODE",
-AVG("SHIPPING_COST") AS AVERAGESHIPPINGCOST
-FROM 
-[DBO].[KMS sql case study]
-GROUP BY
-"SHIP_MODE"
-ORDER BY
-AVERAGESHIPPINGCOST DESC;
-
- SELECT
- (ORDER_PRIORITY),
- (SHIP_MODE),
- COUNT(*)AS NUMBER_OF_ORDERS,
- SUM(SHIPPING_COST) AS
- TOTAL_SHIPPING_COST,
- AVG(SHIPPING_COST) AS AVG_SHIPPING
- FROM
- [KMS SQL CASE STUDY]
- GROUP BY
- (ORDER_PRIORITY),(SHIP_MODE)
-ORDER BY
-CASE (ORDER_PRIORITY)
-WHEN 'CRITICAL' THEN 1
-WHEN 'HIGH'  THEN 2
-WHEN 'MEDIUM' THEN 3
-WHEN 'LOW' THEN 4
-ELSE 5
-END,
-SHIP_MODE
