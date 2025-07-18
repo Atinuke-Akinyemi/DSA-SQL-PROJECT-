@@ -15,12 +15,12 @@ from [KMS Sql Case Study]
 
 ##### QUESTION 1: Which product category had the highest sales?
 select top 1 
-[Product_Category],count 
-([Product_Category])as 
-[Product Count]
-from [KMS Sql Case Study]
-group by Product_Category
-order by [Product Count] 
+'[Product_Category],count' 
+'([Product_Category])as' 
+'[Product Count]'
+'from [KMS Sql Case Study]'
+'group by Product_Category'
+'order by [Product Count] 
 desc
 ##### My display table below:
 <img width="1600" height="900" alt="SCREENSHOT QUESTION 1" src="https://github.com/user-attachments/assets/b7c92045-3742-4633-8491-d2640a65fac0" />
