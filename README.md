@@ -101,7 +101,7 @@ order by [Total order] desc
 ##### My display table below:
 <img width="1600" height="900" alt="SCREENSHOT QUESTION 8" src="https://github.com/user-attachments/assets/d14eac55-47bc-408d-9f51-14f21ec40bf5" />
 
-##### Which consumer customer was the most profitable one?
+##### QUESTION 9: Which consumer customer was the most profitable one?
 Select top 1 
 Customer_Name,Customer_Segment, sum([Profit]) as [Total profit]
 from [KMS Sql Case Study]
@@ -111,15 +111,16 @@ order by [Total profit] desc
 ##### My display table below:
 <img width="1600" height="900" alt="SCREENSHOT QUESTION 9" src="https://github.com/user-attachments/assets/a8ee18f2-a211-4aa2-9df3-75369f2a2970" />
 
-##### Which customer returned items, and what segment do they belong to?
-select customer_name,customer_segment,product_category,product_sub_category
-from[dbo].[KMS SQL case study]
-join[dbo].[order_status]
-on [dbo].[KMS SQL case study].order_ID=[dbo].[order_status].order_ID
+##### QUESTION 10: Which customer returned items, and what segment do they belong to?
+select Customer_Name,Customer_Segment,[Status]
+from [KMS Sql Case Study]
+join [dbo].[Order_Status]
+on [KMS Sql Case Study].Order_ID = [dbo].[Order_Status].[Order_ID]
 
-##### If the delivery truck is the most economical but the slowest shipping method and
-Express Air is the fastest but the most expensive one, do you think the company
-appropriately spent shipping costs based on the Order Priority?
+##### If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
+/* If the delivery truck is the most economical but the lowest shipping method and express air is the fastest.
+but the most expensive one, did you think the company appropriately spent shipping costs based on the order priority */
+
 
 SELECT 
 "SHIP_MODE",
