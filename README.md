@@ -116,17 +116,33 @@ select Customer_Name,Customer_Segment,[Status]
 from [KMS Sql Case Study]
 join [dbo].[Order_Status]
 on [KMS Sql Case Study].Order_ID = [dbo].[Order_Status].[Order_ID]
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 10" src="https://github.com/user-attachments/assets/a99827d1-2a05-4482-a60a-a79d946c7360" />
+
 
 ##### QUESTION 11: If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
 Select Order_Priority, Ship_Mode,
-COUNT([Order_ID]) AS [order count],
-SUM(sales - profit) AS [Estimated shipping cost],
-AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
-from  [KMS Sql Case Study1] 
+    COUNT([Order_ID]) AS [order count],
+    SUM(sales - profit) AS [Estimated shipping cost],
+    AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
+from  [KMS Sql Case Study] 
 group by Order_Priority,Ship_Mode
-order by  Order_Priority,Ship_Mode desc       
+order by  Order_Priority,Ship_Mode desc 
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 11A" src="https://github.com/user-attachments/assets/9f962d17-541d-4b4c-9020-bb57fa086a90" />
+
+
 ##### EXPLANATION
-No, KMS did not appropriately spend shipping costs based on the order of  priority.
+###### No, KMS did not appropriately spend shipping costs based on the order of  priority.
 They overused delivery trucks, which are best for bulk or non-urgent orders and underused express air, which is meant for urgent deliveries. 
 This leads to an inefficient spending and wasted cost.
+select Customer_Segment, SUM(sales) as [total sales]
+from [KMS Sql Case Study]
+group by Customer_Segment
+order by [total sales] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 11B" src="https://github.com/user-attachments/assets/aebac0ff-f887-4df6-bf5e-3689136b0f31" />
+
+
+
 
