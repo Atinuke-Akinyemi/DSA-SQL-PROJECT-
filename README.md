@@ -2,105 +2,116 @@
 ## Kultra Mega Stores (KMS) Sales Analysis
 ### Description: A detailed analysis of sales and order data for a retail company.
 #### Steps to my SQL Analysis 
-- Firstly i created a Database and named it KMS_db and then created Table KMS_dbORDERS
-Below are my queries:
-CREATE DATABASE KMS_DB
+- Firstly i created a Database and named it #### project and then select all my data from my [KMS Sql Case Study] table that i imported to my project database
+##### Below are my queries use to create my database and to select my data from my database:
+create database project
 
-Create Table KMS_dbORDERS(
-"[Row_ID]INT
-[ORDER_ID]INT
-"[ORDER_Date]Date,"
-"[ORDER_Priority]varchar(50),"
-"[ORDER_Quantity]Int,"
-"Sales Decimal (10,2),"
-"Discount Decimal (10,2),"
-"[ship_Mode]Varchar (50),"
-"Profit Decimal(10,2),"
-"[Unit_Price]Decimal(10,2),"
-"[Shipping_Cost]Decimal (10,2),"
-"[Customer_Name] Varchar (255),"
-"Province Varchar (100),"
-Region Nvarchar(100)
-[Customer_segment] varchar (100),
-[Product_Category]  varchar (100),
-[product_sub_category]varchar (100),
-[product_name]varchar (max),
-[product_container] varchar(100),
-[product_base margin] decimal(10,2)
-[ship_date] date
-)
+select*
+from [KMS Sql Case Study]
+#### My display table below after selecting all my data
+<img width="1600" height="900" alt="SQL FIRST PAGE SCREENSHOT" src="https://github.com/user-attachments/assets/a8ff5500-017b-4aea-b8fc-a227ab29e205" />
 
 #### Below are my query use to answer the Following Questions:
-##### Which product category had the highest sales?
 
-select product_category, sum([Sales]) as [Total sales]
-from [dbo] .[KMS SQL case study]
-group by product_category
-order by [Total sales]desc
+##### QUESTION 1: Which product category had the highest sales?
+select top 1 
+[Product_Category],count 
+([Product_Category])as 
+[Product Count]
+from [KMS Sql Case Study]
+group by Product_Category
+order by [Product Count] 
+desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 1" src="https://github.com/user-attachments/assets/b7c92045-3742-4633-8491-d2640a65fac0" />
 
-[dbo].[KMS SQL case study]
-select * from [dbo].[KMS SQL case study]
-CREATE DATABASE KULGAR_DB
+##### QUESTION 2: What are the Top 3 and Bottom 3 regions in terms of sale
+select top 3 
+[Region],sum([sales]) as 
+[Total Sales]
+from [KMS Sql Case Study]
+group by Region
+order by [Total Sales] desc
 
-##### What are the Top 3 and Bottom 3 regions in terms of sale
+select top 3 
+[Region],sum([sales]) as 
+[Total Sales]
+from [KMS Sql Case Study]
+group by Region
+order by [Total Sales] asc
+##### My display table below:
+<img width="1600" height="868" alt="SCREENSHOT QUESTION 2" src="https://github.com/user-attachments/assets/b5545fed-0280-4843-8d1f-893035c2fca7" />
 
-SELECT TOP 3 region,sum (sales) as [total sales]
-from[dbo].[KMS SQL case study]
-group by region
-order by [total sales]desc
+##### QUESTION 3: What were the total sales of appliances in Ontario?
+Select Region, SUM(sales) 
+as [Total Sales]
+from [KMS Sql Case Study]
+where Region='ontario'
+Group by Region
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 3" src="https://github.com/user-attachments/assets/ded907de-487c-4e04-a82b-efc3ab03b429" />
 
+##### QUESTION 4: Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers
+Select top 10 
+[Customer_Name], 
+SUM([Sales]) as [Total Sales]
+from [KMS Sql Case Study]
+group by Customer_Name
+order by [Total Sales] asc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 4" src="https://github.com/user-attachments/assets/7a8a92fe-a75c-433d-876d-dceb9ec11bf2" />
 
-##### What were the total sales of appliances in Ontario?
-select product_sub_category, sum(sales) as [total sales]
-from  [dbo].[KMS SQL case study]
-where region ='ontario'
-group by product_sub_category
+##### QUESTION 5: KMS incurred the most shipping cost using which shipping method?
+Select Top 1 [Ship_Mode], 
+SUM([Shipping_Cost]) as 
+[Total Shipping Cost]
+from [KMS Sql Case Study]
+group by Ship_Mode
+order by [Total Shipping Cost] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 5" src="https://github.com/user-attachments/assets/9e7c4e15-fbd6-4c12-a2d4-828cc339e968" />
 
+##### QUESTION 6: Who are the most valuable customers, and what products or services do they typically purchase?
+Select [Customer_Name],Product_Name, 
+SUM(sales) as [Total Sales]
+from [KMS Sql Case Study]
+Group by Customer_Name,Product_Name
+order by [Total Sales] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 6" src="https://github.com/user-attachments/assets/6aa41a10-b129-476e-8b83-184fdb8ab24c" />
 
-##### Advise the management of KMS on what to do to increase the revenue from the bottom
-10 customers
+##### QUESTION 7: Which small business customer had the highest sales?
+Select top 1 
+Customer_Name,Customer_Segment, 
+SUM([Sales]) as [Total Sales]
+from [KMS Sql Case Study]
+where Customer_Segment ='small Business'
+group by Customer_Name,Customer_Segment
+order by [Total Sales] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 7" src="https://github.com/user-attachments/assets/79834bf6-87cd-49fa-8b00-d95cfba22788" />
 
-select top 10 customer_Name, shipping_cost,sales, Discount, unit_price, sum(order_quantity) as [total order_quantity]
-from[dbo].[KMS SQL case study]
-group by customer_name,shipping_cost,sales,discount, unit_price
-order by [total order_quantity]asc
-
-##### KMS incurred the most shipping cost using which shipping method?
-select Ship_mode, sum([shipping_cost]) as [total shipping_cost]
-from [dbo].[KMS SQL case study]
-group by ship_mode
-order by [total shipping_cost]desc
-
-##### Who are the most valuable customers, and what products or services do they typically
-purchase?
-
-select customer_segment, product_sub_category,customer_name,sum(sales) as [Total sales]
-from[dbo].[KMS SQL case study]
-group by customer_segment, product_sub_category,customer_name
-order by [total sales]desc
-
-##### Which small business customer had the highest sales?
-select top 1 *
-from [dbo].[KMS SQL case study ]
-where customer_segment ='small business'
-order by sales desc
-
-##### Which Corporate Customer placed the most number of orders in 2009 – 2012?
-
-select top 1*
-from [dbo].[KMS SQL case study]
-where customer_segment = 'corporate'
-order by order_quantity desc
+##### QUESTION 8: Which Corporate Customer placed the most number of orders in 2009 – 2012?
+Select top 1  
+Customer_Name,Customer_Segment, count([Order_ID]) as [Total order]
+from [KMS Sql Case Study]
+where Customer_Segment ='corporate' and Order_Date between '2009' and '2012'
+group by Customer_Name,Customer_Segment
+order by [Total order] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 8" src="https://github.com/user-attachments/assets/d14eac55-47bc-408d-9f51-14f21ec40bf5" />
 
 ##### Which consumer customer was the most profitable one?
-
-select top 1*
-from[dbo].[KMS SQL case study]
-where customer_segment= 'consumer'
-order by profit desc
+Select top 1 
+Customer_Name,Customer_Segment, sum([Profit]) as [Total profit]
+from [KMS Sql Case Study]
+where Customer_Segment ='Consumer'
+group by Customer_Name,Customer_Segment
+order by [Total profit] desc
+##### My display table below:
+<img width="1600" height="900" alt="SCREENSHOT QUESTION 9" src="https://github.com/user-attachments/assets/a8ee18f2-a211-4aa2-9df3-75369f2a2970" />
 
 ##### Which customer returned items, and what segment do they belong to?
-
 select customer_name,customer_segment,product_category,product_sub_category
 from[dbo].[KMS SQL case study]
 join[dbo].[order_status]
