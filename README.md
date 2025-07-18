@@ -117,7 +117,7 @@ from [KMS Sql Case Study]
 join [dbo].[Order_Status]
 on [KMS Sql Case Study].Order_ID = [dbo].[Order_Status].[Order_ID]
 
-##### If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
+##### QUESTION 11: If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
 Select Order_Priority, Ship_Mode,
 COUNT([Order_ID]) AS [order count],
 SUM(sales - profit) AS [Estimated shipping cost],
@@ -128,5 +128,5 @@ order by  Order_Priority,Ship_Mode desc
 ##### EXPLANATION
 No, KMS did not appropriately spend shipping costs based on the order of  priority.
 They overused delivery trucks, which are best for bulk or non-urgent orders and underused express air, which is meant for urgent deliveries. 
-This leadS to an inefficient spending and wasted cost.
+This leads to an inefficient spending and wasted cost.
 
