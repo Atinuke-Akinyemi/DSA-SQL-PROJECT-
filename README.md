@@ -111,6 +111,7 @@ order by [Total profit] desc
 ##### My display table below:
 <img width="1600" height="900" alt="SCREENSHOT QUESTION 9" src="https://github.com/user-attachments/assets/a8ee18f2-a211-4aa2-9df3-75369f2a2970" />
 
+#### To answer Question 10 and 11, I imported order_status data set to my database before writing the queries to answer my questions.
 ##### QUESTION 10: Which customer returned items, and what segment do they belong to?
 select Customer_Name,Customer_Segment,[Status]
 from [KMS Sql Case Study]
